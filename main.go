@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 func CheckFileExtension(filename string) bool {
@@ -40,7 +41,7 @@ func ConvertFile(suuu string) {
 		res += translation + "\n"
 		// fmt.Println(GetTranslation(scanner.Text()))
 	}
-	os.WriteFile("test/i.ijafa", []byte(res), 0644)
+	os.WriteFile(strings.Split(suuu, ".")[0] + ".java", []byte(res), 0644)
 }
 
 func main() {
