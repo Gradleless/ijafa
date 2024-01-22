@@ -1,12 +1,16 @@
 package lib
 
 import (
-	"fmt"
 	"regexp"
 	"strings"
 )
 
 var dictionary = [][]string{
+	// liste faite par chatgpt et copilot, donc il y a sûrement des erreurs et des doublons
+	{"importer", "import"},
+	{"paquet", "package"},
+	{"publique", "public"},
+	{"prive", "private"},
 	{"rupture", "break"},
 	{"boite", "case"},
 	{"boitier", "case"},
@@ -19,8 +23,6 @@ var dictionary = [][]string{
 	{"pour", "for"},
 	{"fonction", "function"},
 	{"si", "if"},
-	{"dans", "in"},
-	{"instanceOf", "instanceof"},
 	{"nouveau", "new"},
 	{"retourner", "return"},
 	{"changer", "switch"},
@@ -44,7 +46,6 @@ var dictionary = [][]string{
 	{"etendre", "extends"},
 	{"final", "final"},
 	{"flottant", "float"},
-	{"allerA", "goto"},
 	{"implementer", "implements"},
 	{"importer", "import"},
 	{"entier", "int"},
@@ -74,9 +75,59 @@ var dictionary = [][]string{
 	{"prototype", "prototype"},
 	{"constructeur", "constructor"},
 	{"longueur", "length"},
-	{"prototype", "prototype"},
 	{"versChaine", "toString"},
-	{"versSource", "toSource"},
+	{"instance", "instance"},
+	{"clonage", "clone"},
+	{"finaliser", "finalize"},
+	{"interface", "interface"},
+	{"exception", "exception"},
+	{"assertion", "assert"},
+	{"superclasse", "superclass"},
+	{"interface", "interface"},
+	{"surcharge", "overload"},
+	{"surcharge", "override"},
+	{"this", "this"},
+	{"super", "super"},
+	{"statique", "static"},
+	{"final", "final"},
+	{"transitoire", "transient"},
+	{"classeAnonyme", "anonymous class"},
+	{"stream", "stream"}, // modif
+	{"optionnel", "optional"},
+	{"fonctionIdentite", "identity function"},
+	{"referenceMethode", "method reference"},
+	{"biPredicate", "BiPredicate"},
+	{"tri", "sort"},
+	{"filtrer", "filter"},
+	{"mapper", "map"},
+	{"reduire", "reduce"},
+	{"collecter", "collect"},
+	{"pourChaque", "forEach"},
+	{"streamParallele", "parallelStream"},
+	{"super", "super"},
+	{"classe", "class"},
+	{"heritage", "inheritance"},
+	{"operateur", "operator"},
+	{"metadonnees", "metadata"},
+	{"enumeration", "enum"},
+	{"defaut", "default"},
+	{"constructeur", "constructor"},
+	{"statique", "static"},
+	{"scelle", "sealed"},
+	{"nonNul", "nonnull"},
+	{"non nul", "nonnull"},
+	{"ouvrir", "open"},
+	{"exports", "exports"},
+	{"exige", "requires"},
+	{"necessite", "requires"},
+	{"transitif", "transitive"},
+	{"transitionnel", "transitive"},
+	{"utilise", "uses"},
+	{"fournit", "provides"},
+	{"avec", "with"},
+	{"enregistrer", "records"},
+	{"var", "var"},
+	{"rendement", "yield"},
 	// flemme d'ajouter + pr l'instant
 }
 
@@ -91,7 +142,6 @@ func GetTranslation(word string) string {
 		if strings.Contains(word, v[0]) && !IsWordBetweenQuotes(word, v[0]) {
 			word = strings.ReplaceAll(word, v[0], v[1])
 		} else if strings.Contains(word, v[0]) && IsWordBetweenQuotes(word, v[0]) {
-			fmt.Println("word between quotes")
 			splited := strings.Split(word, "\"")
 			word = strings.ReplaceAll(splited[0], v[0], v[1]) + "\"" + splited[1] + "\"" + strings.ReplaceAll(splited[2], v[0], v[1])
 		}
