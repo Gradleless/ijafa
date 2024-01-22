@@ -24,6 +24,7 @@ func Help() {
 	fmt.Println("Help:")
 	fmt.Println("ijafa -h")
 	fmt.Println("ijafa -u")
+	fmt.Println("ijafa -d <directory>")
 	fmt.Println("ijafa <file>")
 }
 
@@ -34,12 +35,16 @@ func Help() {
 func Cli() {
 	update := flag.Bool("u", false, "update ijafa")
 	help := flag.Bool("h", false, "help")
+	directory := flag.String("d", "", "directory")
+
 	flag.Parse()
 
 	if *update {
 		Update()
 	} else if *help {
 		Help()
+	} else if *directory != "" {
+		ConvertFileDirectory(*directory)
 	} else {
 		if len(os.Args) == 1 {
 			fmt.Println("No file specified")

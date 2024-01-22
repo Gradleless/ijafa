@@ -64,3 +64,16 @@ func ConvertFile(suuu string) {
 	}
 	os.WriteFile(strings.Split(suuu, ".")[0]+".java", []byte(res), 0644)
 }
+
+func ConvertFileDirectory(directory string) {
+	fmt.Println("Converting directory " + directory + "...")
+	files, err := os.ReadDir(directory)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for _, file := range files {
+		fmt.Println("Converting " + file.Name() + "...")
+		ConvertFile(directory + "/" + file.Name())
+	}
+}
