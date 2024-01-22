@@ -51,7 +51,6 @@ func ConvertFile(suuu string) {
 		bytes float64
 	)
 
-	fmt.Println("Converting...")
 	for scanner.Scan() {
 
 		text := scanner.Text()
@@ -59,7 +58,7 @@ func ConvertFile(suuu string) {
 		translation := GetTranslation(text)
 		res += translation + "\n"
 		translationTime := bytes / lengthFile * 100
-		fmt.Printf("\r%.2f%%", translationTime)
+		fmt.Printf("\r%.2f%%\n", translationTime)
 		// time.Sleep(1000 * time.Millisecond) // debug pour test la barre de progression
 		// fmt.Println(GetTranslation(scanner.Text()))
 	}

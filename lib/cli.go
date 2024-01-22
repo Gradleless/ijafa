@@ -45,7 +45,11 @@ func Cli() {
 			fmt.Println("No file specified")
 			fmt.Println("Use -h for help")
 		} else {
-			ConvertFile(os.Args[1])
+			for i := 1; i < len(os.Args); i++ {
+				fmt.Println("Converting " + os.Args[i] + "...")
+				ConvertFile(os.Args[i])
+			}
+			// ConvertFile(os.Args[1])
 		}
 	}
 }
