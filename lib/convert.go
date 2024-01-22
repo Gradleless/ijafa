@@ -16,10 +16,7 @@ import (
  *	@return {string} translation
  */
 func CheckFileExtension(filename string) bool {
-	if filepath.Ext(filename) == ".ijafa" {
-		return true
-	}
-	return false
+	return filepath.Ext(filename) == ".ijafa"
 }
 
 /**
