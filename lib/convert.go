@@ -69,7 +69,7 @@ func ConvertFileDirectory(directory string) {
 	PrintInfo("Converting directory " + directory + "...")
 	files, err := os.ReadDir(directory)
 	if err != nil {
-		PrintError("Directory not found: " + err.Error())
+		PrintError(err.Error())
 	}
 
 	for _, file := range files {
