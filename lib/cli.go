@@ -9,14 +9,14 @@ import (
 )
 
 func Update() {
-	fmt.Println("Updating...")
+	PrintInfo("Updating...")
 	_, err := exec.Command("go", "get", "-u", "github.com/mavenless/ijafa").Output()
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	fmt.Println("Download finished !")
+	PrintDone("Download finished !")
 	os.Exit(0)
 }
 
@@ -51,7 +51,7 @@ func Cli() {
 			fmt.Println("Use -h for help")
 		} else {
 			for i := 1; i < len(os.Args); i++ {
-				fmt.Println("Converting " + os.Args[i] + "...")
+				PrintInfo("Converting " + os.Args[i] + "...")
 				ConvertFile(os.Args[i])
 			}
 			// ConvertFile(os.Args[1])

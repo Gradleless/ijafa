@@ -27,7 +27,7 @@ func CheckFileExtension(filename string) bool {
 func ConvertFile(suuu string) {
 
 	if !CheckFileExtension(suuu) {
-		fmt.Println("File extension not supported")
+		PrintError("File extension not supported")
 		return
 	}
 
@@ -66,14 +66,14 @@ func ConvertFile(suuu string) {
 }
 
 func ConvertFileDirectory(directory string) {
-	fmt.Println("Converting directory " + directory + "...")
+	PrintInfo("Converting directory " + directory + "...")
 	files, err := os.ReadDir(directory)
 	if err != nil {
-		log.Fatal(err)
+		PrintError("Directory not found: " + err.Error())
 	}
 
 	for _, file := range files {
-		fmt.Println("Converting " + file.Name() + "...")
+		PrintInfo("Converting " + file.Name() + "...")
 		ConvertFile(directory + "/" + file.Name())
 	}
 }
