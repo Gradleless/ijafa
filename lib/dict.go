@@ -159,7 +159,7 @@ func GetTranslation(word string) string {
 			splited := strings.Split(word, " ")
 			for i, w := range splited {
 				if strings.Contains(w, v[1]) && len(w) > len(v[1]) {
-					word = strings.Replace(splited[i], w, v[0], 1)
+					word = strings.ReplaceAll(splited[i], w, v[0])
 				} else {
 					word += splited[i] + " "
 				}
