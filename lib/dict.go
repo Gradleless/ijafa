@@ -137,6 +137,15 @@ func IsWordBetweenQuotes(word string, list string) bool {
 	return match
 }
 
+func IsWordAttachedToAWord(word string, list string) bool {
+	regex := `[^a-zA-Z]` + list + ``
+	regex2 := list + `[^a-zA-Z]`
+	match, _ := regexp.MatchString(regex, strings.TrimSpace(word))
+	match2, _ := regexp.MatchString(regex2, strings.TrimSpace(word))
+
+	return match || match2
+}
+
 func GetTranslation(word string) string {
 	for _, v := range dictionary {
 		if strings.Contains(word, v[0]) && !IsWordBetweenQuotes(word, v[0]) {
@@ -144,6 +153,17 @@ func GetTranslation(word string) string {
 		} else if strings.Contains(word, v[0]) && IsWordBetweenQuotes(word, v[0]) {
 			splited := strings.Split(word, "\"")
 			word = strings.ReplaceAll(splited[0], v[0], v[1]) + "\"" + splited[1] + "\"" + strings.ReplaceAll(splited[2], v[0], v[1])
+		}
+
+		if IsWordAttachedToAWord(word, v[0]) {
+			splited := strings.Split(word, " ")
+			for i, w := range splited {
+				if strings.Contains(w, v[1]) && len(w) > len(v[1]) {
+					word = strings.Replace(splited[i], w, v[0], 1)
+				} else {
+					word += splited[i] + " "
+				}
+			}
 		}
 	}
 	return word
